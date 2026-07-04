@@ -52,3 +52,72 @@ std::string Add(std::string str1, std::string str2)
 	return result;
 }
 
+// str1 >= str2 라고 가정
+std::string Subtract(std::string str1, std::string str2)
+{
+	if (str1 == str2)
+	{
+		return "0";
+	}
+
+	int n = str1.size();
+
+	if (str1.size() < str2.size())
+	{
+		exit(-1);
+	}
+	else if (str1.size() > str2.size())
+	{
+		str2.insert(0, n - str2.size(), '0');
+	}
+
+	std::string result;
+
+	for (int i = n - 1; i >= 0; i--)
+	{
+		int r = 0;
+
+		if ((str1[i] - '0') < (str2[i] - '0'))
+		{
+			r = ((str1[i] - '0') + 10) - (str2[i] - '0');
+
+			int j = i;
+
+			while (j - 1 >= 0 && str1[j - 1] == '0')
+			{
+				str1[j - 1] = '9';
+				j--;
+			}
+
+			if (j - 1 >= 0)
+			{
+				str1[j - 1]--;
+			}
+
+		}
+		else
+		{
+			r = (str1[i] - '0') - (str2[i] - '0');
+		}
+
+
+		result.insert(0, 1, char(r + '0'));
+
+	}
+
+	int t = 0;
+
+	while (result[t] == '0')
+	{
+		t++;
+	}
+
+	if (t != 0)
+	{
+		result = result.substr(t, n - t);
+	}
+
+	return result;
+}
+
+

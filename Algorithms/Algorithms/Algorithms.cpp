@@ -4,10 +4,10 @@ using namespace std;
 
 int main()
 {
-	string str1 = "999";
-	string str2 = "1999";
+	string str1 = "513";
+	string str2 = "502";
 
-	cout << Add(str1, str2) << endl;
+	cout << Subtract(str1, str2) << endl;
 
 
 
