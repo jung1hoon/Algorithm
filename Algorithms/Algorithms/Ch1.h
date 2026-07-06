@@ -7,3 +7,4 @@
 
 std::string Add(std::string str1, std::string str2);
 std::string Subtract(std::string str1, std::string str2);
+std::string Multiply(std::string str1, std::string str2);

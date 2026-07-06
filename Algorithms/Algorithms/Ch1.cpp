@@ -120,4 +120,50 @@ std::string Subtract(std::string str1, std::string str2)
 	return result;
 }
 
+std::string Multiply(std::string str1, std::string str2)
+{
+	if (str1 == "0" || str2 == "0")
+	{
+		return "0";
+	}
+
+	std::string result("0");
+	std::string temp;
+
+	int n1 = str1.size();
+	int n2 = str2.size();
+
+	int count = 0;
+
+	for (int i = n2 - 1; i >= 0; i--)
+	{
+		int carry = 0;
+		temp.clear();
+
+		for (int j = n1 - 1; j >= 0; j--)
+		{
+			int r = (str1[j] - '0') * (str2[i] - '0') + carry;
+
+			carry = r / 10;
+
+			int digit = r % 10;
+
+			temp.insert(0, 1, char(digit + '0'));
+		}
+
+		if (carry != 0)
+		{
+			temp.insert(0, 1, char(carry + '0'));
+		}
+
+		for (int k = 0; k < count; k++)
+		{
+			temp.push_back('0');
+		}
+		count++;
+
+		result = Add(result, temp);
+	}
+	return result;
+}
 
