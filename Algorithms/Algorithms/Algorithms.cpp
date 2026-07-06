@@ -4,10 +4,10 @@ using namespace std;
 
 int main()
 {
-	string str1 = "11456";
-	string str2 = "1123";
+	string str1 = "123";
+	string str2 = "456";
 
-	cout << Multiply(str1, str2) << endl;
+	cout << Karatsuba(str1, str2) << endl;
 
 
 

@@ -167,3 +167,46 @@ std::string Multiply(std::string str1, std::string str2)
 	return result;
 }
 
+std::string Karatsuba(std::string str1, std::string str2)
+{
+	if (str1 == "0" || str2 == "0")
+	{
+		return "0";
+	}
+
+	int N = std::max(str1.size(), str2.size());
+	str1.insert(0, N - str1.size(), '0');
+	str2.insert(0, N - str2.size(), '0');
+
+	if (N == 1)
+	{
+		std::string result;
+		int r = (str1[0] - '0') * (str2[0] - '0');
+		for (int exp = 1; r / exp > 0; exp *= 10)
+		{
+			result.insert(0, 1, char(((r / exp) % 10) + '0'));
+		}
+		return result;
+	}
+
+	int mid = N / 2;
+
+	std::string a = str1.substr(0, mid);
+	std::string b = str1.substr(mid, N - mid);
+	std::string c = str2.substr(0, mid);
+	std::string d = str2.substr(mid, N - mid);
+
+	std::string ac = Karatsuba(a, c);
+	std::string bd = Karatsuba(b, d);
+	std::string z = Karatsuba(Add(a, b), Add(c, d));
+
+	std::string temp = Subtract(z, Add(ac, bd));
+
+	ac.append((N - mid) * 2, '0');	// *
+	temp.append((N - mid), '0');	// *
+
+	std::string result = Add(Add(ac, temp), bd);
+
+	return result;
+}
+
