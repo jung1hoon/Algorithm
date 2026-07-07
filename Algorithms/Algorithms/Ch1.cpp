@@ -210,3 +210,201 @@ std::string Karatsuba(std::string str1, std::string str2)
 	return result;
 }
 
+
+void Merge(int arr[], int left, int mid, int right)
+{
+	std::vector<int> temp;
+
+	int i = left;
+	int j = mid + 1;
+
+	while (i <= mid && j <= right)
+	{
+		if (arr[i] <= arr[j])
+		{
+			temp.push_back(arr[i]);
+			i++;
+		}
+		else
+		{
+			temp.push_back(arr[j]);
+			j++;
+		}
+	}
+
+	while (i <= mid)
+	{
+		temp.push_back(arr[i]);
+		i++;
+	}
+
+	while (j <= right)
+	{
+		temp.push_back(arr[j]);
+		j++;
+	}
+
+	for (int k = 0; k < static_cast<int>(temp.size()); k++)
+	{
+		arr[left + k] = temp[k];
+	}
+}
+
+void MergeSort(int arr[], int left, int right)
+{
+	if (left >= right)
+	{
+		return;
+	}
+
+	int mid = left + (right - left) / 2; // int 오버플로우 방지
+
+	MergeSort(arr, left, mid);
+	MergeSort(arr, mid + 1, right);
+
+	Merge(arr, left, mid, right);
+}
+
+void MergeSort2(int arr[], int size)
+{
+	int width = 1;
+
+	while (width < size)
+	{
+		for (int left = 0; left < size; left += width * 2)
+		{
+			int mid = std::min(left + width - 1, size - 1);
+			int right = std::min(left + width * 2 - 1, size - 1);
+
+			if (mid < right)
+			{
+				Merge(arr, left, mid, right);
+			}
+		}
+
+		width *= 2;
+	}
+}
+
+void PrintArr(int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
+int Count_O_n(int arr[], int size, int x)
+{
+	int count = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == x)
+		{
+			count++;
+		}
+	}
+
+	return count;
+}
+
+int BinarySearch(int arr[], int left_, int right_, int x)
+{
+	int left = left_;
+	int right = right_;
+	
+	while (left <= right)
+	{
+		int mid = left + (right - left) / 2;
+
+		if (arr[mid] < x)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid] > x)
+		{
+			right = mid - 1;
+		}
+		else
+		{
+			return mid;
+		}
+	}
+	return -1;
+}
+
+int Count_O_logn_n(int arr[], int left_, int right_, int x)
+{
+	if (arr[left_] > x || arr[right_] < x)
+	{
+		return 0;
+	}
+
+	int left = left_;
+	int right = right_;
+	int count = 0;
+	int mid = left + (right - left) / 2;
+
+	while (left <= right && arr[mid] != x)
+	{
+		if (arr[mid] < x)
+		{	
+			left = mid + 1;
+		}
+		else
+		{
+			right = mid - 1;
+		}
+		mid = left + (right - left) / 2;
+	}
+
+	if (left > right)
+	{
+		return 0;
+	}
+
+	for (int i = left; i <= right ; i++)
+	{
+		if (arr[i] == x)
+		{
+			count++;
+		}
+	}
+
+	return count;
+}
+
+int Count_O_logn_n2(int arr[], int left_, int right_, int x)
+{
+	int index = BinarySearch(arr, left_, right_, x);
+	int count = 0;
+
+	if (index == -1)
+	{
+		return 0;
+	}
+
+	int i = index - 1;
+	int j = index;
+
+	while (i >= 0 && arr[i] == x)
+	{
+		count++;
+		i--;
+	}
+
+	while (j <= right_ && arr[j] == x)
+	{
+		count++;
+		j++;
+	}
+
+	return count;
+}
+
+int Count_logn()
+{
+
+}
