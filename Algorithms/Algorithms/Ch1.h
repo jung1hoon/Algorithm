@@ -15,4 +15,5 @@ void MergeSort2(int arr[], int size);
 int Count_O_n(int arr[], int size, int x);
 int Count_O_logn_n(int arr[], int left, int right, int x);
 int Count_O_logn_n2(int arr[], int left_, int right_, int x);
+int Count_O_logn(int arr[], int left_, int right_, int x);
 void PrintArr(int arr[], int size);

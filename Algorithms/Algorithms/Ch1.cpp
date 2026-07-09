@@ -335,6 +335,65 @@ int BinarySearch(int arr[], int left_, int right_, int x)
 	return -1;
 }
 
+int BinarySearchFirst(int arr[], int left_, int right_, int x)
+{
+	int left = left_;
+	int right = right_;
+
+	while (left <= right)
+	{
+		int mid = left + (right - left) / 2;
+
+		if (arr[mid] < x)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid] > x)
+		{
+			right = mid - 1;
+		}
+		else if ((mid == left_ || arr[mid - 1] < x) && arr[mid] == x)
+		{
+			return mid;
+		}
+		else
+		{
+			right = mid - 1;
+		}
+	}
+	return -1;
+}
+
+int BinarySearchLast(int arr[], int left_, int right_, int x)
+{
+	int left = left_;
+	int right = right_;
+
+	while (left <= right)
+	{
+		int mid = left + (right - left) / 2;
+
+		if (arr[mid] < x)
+		{
+			left = mid + 1;
+		}
+		else if (arr[mid] > x)
+		{
+			right = mid - 1;
+		}
+		else if ((mid == right_ || arr[mid + 1] > x) && arr[mid] == x)
+		{
+			return mid;
+		}
+		else
+		{
+			left = mid + 1;
+		}
+	}
+	return -1;
+}
+
+
 int Count_O_logn_n(int arr[], int left_, int right_, int x)
 {
 	if (arr[left_] > x || arr[right_] < x)
@@ -404,7 +463,16 @@ int Count_O_logn_n2(int arr[], int left_, int right_, int x)
 	return count;
 }
 
-int Count_logn()
-{
 
+int Count_O_logn(int arr[], int left_, int right_, int x)
+{
+	int first_index = BinarySearchFirst(arr, left_, right_, x);
+	int last_index = BinarySearchLast(arr, left_, right_, x);
+
+	if (first_index == -1)
+	{
+		return 0;
+	}
+
+	return last_index - first_index + 1;
 }

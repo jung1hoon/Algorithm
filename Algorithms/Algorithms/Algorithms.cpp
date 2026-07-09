@@ -14,6 +14,7 @@ int main()
 	cout << "O(n) : " << Count_O_n(arr, size, x) << endl;
 	cout << "O(logn + n){1} : " << Count_O_logn_n(arr, 0, size - 1, x) << endl;
 	cout << "O(logn + n){2} : " << Count_O_logn_n2(arr, 0, size - 1, x) << endl;
+	cout << "O(logn) : " << Count_O_logn(arr, 0, size - 1, x) << endl;
 
 	cout << "Answer : " << count(arr, arr + size, x) << endl;
 
