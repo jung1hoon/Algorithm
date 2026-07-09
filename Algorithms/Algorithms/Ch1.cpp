@@ -476,3 +476,52 @@ int Count_O_logn(int arr[], int left_, int right_, int x)
 
 	return last_index - first_index + 1;
 }
+
+void swap(int& a, int& b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+void SelectionSortPass(std::vector<int>& arr, int left, int right)
+{
+	int min = left;
+
+	for (int i = left + 1; i <= right; i++)
+	{
+		if (arr[min] > arr[i])
+		{
+			min = i;
+		}
+	}
+
+	swap(arr[left], arr[min]);
+}
+
+int K_th_SelectionSort(std::vector<int>& arr, int left_, int right_, int k)
+{
+	if (k <= 0)
+	{
+		return -100;
+	}
+
+	int left = left_;
+
+	for (int i = 0; i < k; i++)
+	{
+		SelectionSortPass(arr, left, right_);
+		left++;
+	}
+
+	return arr[k - 1];
+}
+
+void PrintVec(const std::vector<int>& arr)
+{
+	for (auto i = arr.begin(); i < arr.end(); i++)
+	{
+		std::cout << *i << " ";
+	}
+	std::cout << std::endl;
+}
