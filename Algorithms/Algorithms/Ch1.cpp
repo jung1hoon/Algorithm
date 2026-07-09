@@ -525,3 +525,52 @@ void PrintVec(const std::vector<int>& arr)
 	}
 	std::cout << std::endl;
 }
+
+void PrintMinMax(const std::vector<int>& arr)
+{
+	if (arr.size() % 2 != 0)
+	{
+		return;
+	}
+
+	int result[2] = { 0,0 };
+	int temp[2] = { 0,0 };
+
+	if (arr[0] < arr[1])
+	{
+		result[0] = arr[0];
+		result[1] = arr[1];
+	}
+	else
+	{
+		result[0] = arr[1];
+		result[1] = arr[0];
+	}
+
+	for (int i = 2; i < arr.size(); i += 2)
+	{
+		if (arr[i] <= arr[i + 1])
+		{
+			temp[0] = arr[i];
+			temp[1] = arr[i + 1];
+		}
+		else
+		{
+			temp[1] = arr[i];
+			temp[0] = arr[i + 1];
+		}
+
+		if (temp[0] < result[0])
+		{
+			result[0] = temp[0];
+		}
+
+		if (temp[1] > result[1])
+		{
+			result[1] = temp[1];
+		}
+	}
+
+	std::cout << "Min : " << result[0] << std::endl;
+	std::cout << "Max : " << result[1] << std::endl;
+}

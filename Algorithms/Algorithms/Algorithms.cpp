@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-	vector<int> arr = { 7,4,5,6,9,6,6,3,2,5 };
+	vector<int> arr = { 7,4,5,100,9,6,6,3,2,5 };
 
 	int size = arr.size();
 
@@ -15,6 +15,8 @@ int main()
 	PrintVec(arr);
 
 	cout << "result : " << r << endl;
+
+	PrintMinMax(arr);
 
 	return 0;
 }
