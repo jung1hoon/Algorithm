@@ -8,20 +8,21 @@ int main()
 
 	int size = arr.size();
 
+	//PrintVec(arr);
+	//
+	//int r = K_th_SelectionSort(arr, 3, size - 1, size - 3);
+
+	//PrintVec(arr);
+
+	//cout << "result : " << r << endl;
+
+	//PrintMinMax(arr);
+
+	//int r2 = MedianByPartition(arr, 3, size - 1);
+	//cout << "result2 : " << r2 << endl;
+
+	QuickSort(arr, 0, size - 1);
 	PrintVec(arr);
-	
-	int r = K_th_SelectionSort(arr, 3, size - 1, size - 3);
-
-	PrintVec(arr);
-
-	cout << "result : " << r << endl;
-
-	PrintMinMax(arr);
-
-	int r2 = MedianByPartition(arr, 3, size - 1);
-	cout << "result2 : " << r2 << endl;
-
-
 
 	return 0;
 }

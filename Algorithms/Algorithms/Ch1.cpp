@@ -577,7 +577,8 @@ void PrintMinMax(const std::vector<int>& arr)
 
 int PartitionByPivot(std::vector<int>& arr, int left, int right)
 {
-	int pivot = arr[right];
+	int pivotindex = right;
+	int pivot = arr[pivotindex];
 
 	int i = left - 1;
 
@@ -590,7 +591,7 @@ int PartitionByPivot(std::vector<int>& arr, int left, int right)
 		}
 	}
 
-	swap(arr[right], arr[i + 1]);
+	swap(arr[pivotindex], arr[i + 1]);
 
 	return i + 1;
 }
@@ -620,4 +621,33 @@ int MedianByPartition(std::vector<int>& arr, int left_, int right_)
 		}
 	}
 	return -10000; // 문제 발생
+}
+
+void SelectionSortPass2(std::vector<int>& arr, int left, int right, int g)
+{
+	int min = left;
+
+	for (int i = left + g; i <= right; i += g)
+	{
+		if (arr[min] > arr[i])
+		{
+			min = i;
+		}
+	}
+
+	swap(arr[left], arr[min]);
+}
+
+
+void QuickSort(std::vector<int>& arr, int left, int right)
+{
+	if (left < 0 || left >= right)
+	{
+		return;
+	}
+
+	int pivot = PartitionByPivot(arr, left, right);
+
+	QuickSort(arr, left, pivot - 1);
+	QuickSort(arr, pivot + 1, right);
 }

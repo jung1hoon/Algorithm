@@ -29,3 +29,5 @@ void PrintMinMax(const std::vector<int>& arr);
 int PartitionByPivot(std::vector<int>& arr, int left, int right);
 int MedianByPartition(std::vector<int>& arr, int left_, int right_);
 
+void QuickSort(std::vector<int>& arr, int left, int right);
+
