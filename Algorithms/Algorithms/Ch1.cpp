@@ -574,3 +574,23 @@ void PrintMinMax(const std::vector<int>& arr)
 	std::cout << "Min : " << result[0] << std::endl;
 	std::cout << "Max : " << result[1] << std::endl;
 }
+
+int PartitionByPivot(std::vector<int>& arr, int left, int right)
+{
+	int pivot = arr[right];
+
+	int i = left - 1;
+
+	for (int j = left; j < right; j++)
+	{
+		if (pivot >= arr[j])
+		{
+			i++;
+			swap(arr[i], arr[j]);
+		}
+	}
+
+	swap(arr[right], arr[i + 1]);
+
+	return i + 1;
+}
