@@ -501,9 +501,9 @@ void SelectionSortPass(std::vector<int>& arr, int left, int right)
 
 int K_th_SelectionSort(std::vector<int>& arr, int left_, int right_, int k)
 {
-	if (k <= 0)
+	if (k <= 0 || k > right_ - left_ + 1)
 	{
-		return -100;
+		return -100; // 문제 발생
 	}
 
 	int left = left_;
@@ -514,7 +514,7 @@ int K_th_SelectionSort(std::vector<int>& arr, int left_, int right_, int k)
 		left++;
 	}
 
-	return arr[k - 1];
+	return arr[left_ + k - 1];
 }
 
 void PrintVec(const std::vector<int>& arr)
@@ -593,4 +593,31 @@ int PartitionByPivot(std::vector<int>& arr, int left, int right)
 	swap(arr[right], arr[i + 1]);
 
 	return i + 1;
+}
+
+int MedianByPartition(std::vector<int>& arr, int left_, int right_)
+{
+	int k = left_ + (right_ - left_) / 2 + 1; // k번째
+	int left = left_;
+	int right = right_;
+
+	while (left <= right)
+	{
+		int r = PartitionByPivot(arr, left, right);
+
+		if (r + 1 == k) // r+1번째
+		{
+			return arr[r];
+		}
+		else if (r + 1 > k)
+		{
+			right = r - 1;
+		}
+		else
+		{
+			k -= r - left + 1;
+			left = r + 1;
+		}
+	}
+	return -10000; // 문제 발생
 }

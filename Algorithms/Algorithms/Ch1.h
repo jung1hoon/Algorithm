@@ -26,3 +26,6 @@ void swap(int& a, int& b);
 void SelectionSortPass(std::vector<int>& arr, int left, int right);
 int K_th_SelectionSort(std::vector<int>& arr, int left_, int right_, int k);
 void PrintMinMax(const std::vector<int>& arr);
+int PartitionByPivot(std::vector<int>& arr, int left, int right);
+int MedianByPartition(std::vector<int>& arr, int left_, int right_);
+

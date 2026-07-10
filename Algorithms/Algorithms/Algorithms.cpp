@@ -4,19 +4,24 @@ using namespace std;
 
 int main()
 {
-	vector<int> arr = { 7,4,5,100,9,6,6,3,2,5 };
+	vector<int> arr = { 3,2,1,6,19,4,12,14,9,15,7,8,11,3,13,2,5,10 };
 
 	int size = arr.size();
 
 	PrintVec(arr);
 	
-	int r = K_th_SelectionSort(arr, 0, size - 1, 3);
+	int r = K_th_SelectionSort(arr, 3, size - 1, size - 3);
 
 	PrintVec(arr);
 
 	cout << "result : " << r << endl;
 
 	PrintMinMax(arr);
+
+	int r2 = MedianByPartition(arr, 3, size - 1);
+	cout << "result2 : " << r2 << endl;
+
+
 
 	return 0;
 }
