@@ -728,3 +728,80 @@ void QuickSort3Way(std::vector<int>& arr, int left, int right)
 	QuickSort3Way(arr, left, equalBegin - 1);
 	QuickSort3Way(arr, equalEnd + 1, right);
 }
+
+void CountingSortByDigit(std::vector<int>& arr, int left, int right, int exp)
+{
+	int count[10] = { 0, };
+
+	for (int i = left; i <= right; i++)
+	{
+		count[(arr[i] / exp) % 10]++;
+	}
+
+	for (int j = 1; j < 10; j++)
+	{
+		count[j] += count[j - 1];
+	}
+
+	std::vector<int> result = arr;
+
+	for (int t = right; t >= left; t--)
+	{
+		result[left + count[(arr[t] / exp) % 10] - 1] = arr[t];
+		count[(arr[t] / exp) % 10]--;
+	}
+
+	for (int s = left; s <= right; s++)
+	{
+		arr[s] = result[s];
+	}
+}
+
+int MaxValue(const std::vector<int>& arr, int left, int right)
+{
+	int max = arr[left];
+
+	for (int i = left + 1; i <= right; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+	}
+
+	return max;
+}
+
+void RadixSort(std::vector<int>& arr, int left, int right)
+{
+	int max = MaxValue(arr, left, right);
+
+	for (int exp = 1; max / exp > 0; exp *= 10)
+	{
+		CountingSortByDigit(arr, left, right, exp);
+	}
+}
+
+void CountingSort(std::vector<int>& arr, int left, int right)
+{
+	int max = MaxValue(arr, left, right);
+
+	std::vector<int> count(max + 1, 0);
+
+	for (int i = left; i <= right; i++)
+	{
+		count[arr[i]]++;
+	}
+
+	int index = 0;
+
+	for (int value = 0; value <= max; value++)
+	{
+		while (count[value] > 0)
+		{
+			arr[index] = value;
+			index++;
+			count[value]--;
+		}
+	}
+}

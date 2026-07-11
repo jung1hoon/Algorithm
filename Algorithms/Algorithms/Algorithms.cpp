@@ -5,8 +5,10 @@ using namespace std;
 int main()
 {
 	vector<int> arr = { 3,2,1,6,19,4,12,14,9,15,7,8,11,3,13,2,5,10 };
+	vector<int> arr2 = { 2,5,8,4,6,7,0,2,1,4,5,6,7 };
 
 	int size = arr.size();
+	int size2 = arr2.size();
 
 	//PrintVec(arr);
 	//
@@ -21,7 +23,7 @@ int main()
 	//int r2 = MedianByPartition(arr, 3, size - 1);
 	//cout << "result2 : " << r2 << endl;
 
-	QuickSort(arr, 0, size - 1);
+	CountingSort(arr, 0, size - 1);
 	PrintVec(arr);
 
 	return 0;

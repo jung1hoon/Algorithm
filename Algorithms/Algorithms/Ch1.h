@@ -31,4 +31,12 @@ int PartitionByPivot(std::vector<int>& arr, int left, int right);
 int MedianByPartition(std::vector<int>& arr, int left_, int right_);
 
 void QuickSort(std::vector<int>& arr, int left, int right);
+void Partition3way_test(std::vector<int>& arr, int left, int right);
+std::pair<int, int> Partition3Way(std::vector<int>& arr, int left, int right);
+void QuickSort3Way(std::vector<int>& arr, int left, int right);
+
+void CountingSort(std::vector<int>& arr, int left, int right);
+void CountingSortByDigit(std::vector<int>& arr, int left, int right, int exp);
+int MaxValue(const std::vector<int>& arr, int left, int right);
+void RadixSort(std::vector<int>& arr, int left, int right);
 
