@@ -651,3 +651,80 @@ void QuickSort(std::vector<int>& arr, int left, int right)
 	QuickSort(arr, left, pivot - 1);
 	QuickSort(arr, pivot + 1, right);
 }
+
+void Partition3way_test(std::vector<int>& arr, int left, int right)
+{
+	int pivot_index = right;
+	int pivot = arr[pivot_index];
+
+	int i = left - 1;
+
+	for (int j = left; j < right; j++)
+	{
+		if (pivot > arr[j])
+		{
+			i++;
+			swap(arr[i], arr[j]);
+		}
+	}
+
+	for (int j = i + 1; j < right; j++)
+	{
+		if (pivot == arr[j])
+		{
+			i++;
+			swap(arr[i], arr[j]);
+		}
+	}
+
+	swap(arr[pivot_index], arr[i + 1]);
+}
+
+std::pair<int, int> Partition3Way(std::vector<int>& arr, int left, int right)
+{
+	int pivot = arr[right];
+
+	int lessEnd = left - 1;
+
+	// pivot보다 작은 값을 앞으로 이동
+	for (int j = left; j < right; ++j)
+	{
+		if (arr[j] < pivot)
+		{
+			++lessEnd;
+			std::swap(arr[lessEnd], arr[j]);
+		}
+	}
+
+	int equalEnd = lessEnd;
+
+	for (int j = lessEnd + 1; j < right; ++j)
+	{
+		if (arr[j] == pivot)
+		{
+			++equalEnd;
+			std::swap(arr[equalEnd], arr[j]);
+		}
+	}
+
+	++equalEnd;
+	std::swap(arr[equalEnd], arr[right]);
+
+	int equalBegin = lessEnd + 1;
+
+	return { equalBegin, equalEnd };
+}
+
+
+void QuickSort3Way(std::vector<int>& arr, int left, int right)
+{
+	if (left >= right)
+	{
+		return;
+	}
+
+	auto [equalBegin, equalEnd] = Partition3Way(arr, left, right);
+
+	QuickSort3Way(arr, left, equalBegin - 1);
+	QuickSort3Way(arr, equalEnd + 1, right);
+}

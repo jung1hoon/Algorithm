@@ -4,6 +4,7 @@
 #include <string>
 #include <stack>
 #include <algorithm>
+#include <utility>
 
 std::string Add(std::string str1, std::string str2);
 std::string Subtract(std::string str1, std::string str2);
