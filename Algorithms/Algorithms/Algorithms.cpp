@@ -26,5 +26,16 @@ int main()
 	CountingSort(arr, 0, size - 1);
 	PrintVec(arr);
 
+
+	std::vector<std::string> str = {
+	"COW", "DOG", "SEA", "RUG", "ROW", "MOB",
+	"BOX", "TAB", "BAR", "EAR", "TAR", "DIG",
+	"BIG", "TEA", "NOW", "FOX"
+	};
+
+	RadixSort_str(str, 0, str.size() - 1, 3);
+	PrintVec(str);
+	//BAR BIG BOX COW DIG DOG EAR FOX MOB NOW ROW RUG SEA TAB TAR TEA
+
 	return 0;
 }

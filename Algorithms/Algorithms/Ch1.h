@@ -39,4 +39,7 @@ void CountingSort(std::vector<int>& arr, int left, int right);
 void CountingSortByDigit(std::vector<int>& arr, int left, int right, int exp);
 int MaxValue(const std::vector<int>& arr, int left, int right);
 void RadixSort(std::vector<int>& arr, int left, int right);
+void CountingSortByDigit_str(std::vector<std::string>& arr, int left, int right, int exp);
+void RadixSort_str(std::vector<std::string>& arr, int left, int right, int num);
+void PrintVec(std::vector<std::string> arr);
 
