@@ -43,3 +43,9 @@ void CountingSortByDigit_str(std::vector<std::string>& arr, int left, int right,
 void RadixSort_str(std::vector<std::string>& arr, int left, int right, int num);
 void PrintVec(std::vector<std::string> arr);
 
+float MaxValue(const std::vector<float>& arr, int left, int right);
+float MinValue(const std::vector<float>& arr, int left, int right);
+void BucketSort(std::vector<float>& arr, int left, int right);
+void PrintVec(std::vector<float> arr);
+
+

@@ -854,3 +854,79 @@ void PrintVec(std::vector<std::string> arr)
 	}
 	std::cout << std::endl;
 }
+
+void PrintVec(std::vector<float> arr)
+{
+	for (int i = 0; i < arr.size(); i++)
+	{
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
+
+float MaxValue(const std::vector<float>& arr, int left, int right)
+{
+	float max = arr[left];
+
+	for (int i = left + 1; i <= right; i++)
+	{
+		if (max < arr[i])
+		{
+			max = arr[i];
+		}
+	}
+
+	return max;
+}
+
+float MinValue(const std::vector<float>& arr, int left, int right)
+{
+	float min = arr[left];
+
+	for (int i = left + 1; i <= right; i++)
+	{
+		if (min > arr[i])
+		{
+			min = arr[i];
+		}
+	}
+
+	return min;
+}
+
+
+void BucketSort(std::vector<float>& arr, int left, int right)
+{
+	float min = MinValue(arr, left, right);
+	float max = MaxValue(arr, left, right);
+
+	int bucketsize = 10;
+	int bucketcount = int((max - min) * bucketsize + 1);
+
+	std::vector<std::vector<float>> buckets(bucketcount);
+
+	for (int i = left; i <= right; i++)
+	{
+		int bucketindex = int((arr[i] - min) * bucketsize);
+		buckets[bucketindex].push_back(arr[i]);
+	}
+
+	for (int i = 0; i < bucketcount; i++)
+	{
+		std::sort(buckets[i].begin(), buckets[i].end(), 
+			[](float a, float b) {return a < b;});
+	}
+
+	std::vector<float> result;
+
+	for (int i = 0; i < bucketcount; i++)
+	{
+		for (auto value : buckets[i])
+		{
+			result.push_back(value);
+		}
+	}
+
+	arr = result;
+}

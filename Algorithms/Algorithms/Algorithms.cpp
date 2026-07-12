@@ -23,19 +23,27 @@ int main()
 	//int r2 = MedianByPartition(arr, 3, size - 1);
 	//cout << "result2 : " << r2 << endl;
 
-	CountingSort(arr, 0, size - 1);
-	PrintVec(arr);
+	//CountingSort(arr, 0, size - 1);
+	//PrintVec(arr);
 
 
-	std::vector<std::string> str = {
-	"COW", "DOG", "SEA", "RUG", "ROW", "MOB",
-	"BOX", "TAB", "BAR", "EAR", "TAR", "DIG",
-	"BIG", "TEA", "NOW", "FOX"
+	//std::vector<std::string> str = {
+	//"COW", "DOG", "SEA", "RUG", "ROW", "MOB",
+	//"BOX", "TAB", "BAR", "EAR", "TAR", "DIG",
+	//"BIG", "TEA", "NOW", "FOX"
+	//};
+
+	//RadixSort_str(str, 0, str.size() - 1, 3);
+	//PrintVec(str);
+	////BAR BIG BOX COW DIG DOG EAR FOX MOB NOW ROW RUG SEA TAB TAR TEA
+
+	std::vector<float> arr3 = {
+		0.78f, 0.17f, 0.39f, 0.26f, 0.72f,
+		0.94f, 0.21f, 0.12f, 0.23f, 0.67f
 	};
 
-	RadixSort_str(str, 0, str.size() - 1, 3);
-	PrintVec(str);
-	//BAR BIG BOX COW DIG DOG EAR FOX MOB NOW ROW RUG SEA TAB TAR TEA
+	BucketSort(arr3, 0, arr3.size() - 1);
+	PrintVec(arr3);
 
 	return 0;
 }
