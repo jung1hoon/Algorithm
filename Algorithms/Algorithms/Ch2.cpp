@@ -23,3 +23,7 @@ void RomanToInt(std::string str)
 	
 	std::cout << "Result Value : " << result << std::endl;
 }
+
+using Vertex = Graph<std::pair<int, char>>::Vertex;
+
+

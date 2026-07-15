@@ -5,12 +5,10 @@ using namespace std;
 
 int main()
 {
-	//std::unordered_map<char, int> um{
-	//	{'I', 1} ,{'V', 5}, {'X', 10},
-	//	{'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}
-	//};
 
-	RomanToInt("LVIII");
+	using Vertex = Graph<int>::Vertex;
+
+
 
 	return 0;
 }
@@ -56,3 +54,11 @@ int main()
 
 //BucketSort(arr3, 0, arr3.size() - 1);
 //PrintVec(arr3);
+
+	//std::unordered_map<char, int> um{
+	//	{'I', 1} ,{'V', 5}, {'X', 10},
+	//	{'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}
+	//};
+
+	//RomanToInt("LVIII");
+
