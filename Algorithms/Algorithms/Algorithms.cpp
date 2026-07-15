@@ -5,8 +5,28 @@ using namespace std;
 
 int main()
 {
+	using Vertex = Graph<char>::Vertex;
 
-	using Vertex = Graph<int>::Vertex;
+	Graph<char> g(6);
+
+	g.InsertVertex(Vertex{ 'A',false });
+	g.InsertVertex({ 'B', false });
+	g.InsertVertex(Vertex{ 'C',false });
+	g.InsertVertex({ 'D', false });
+	g.InsertVertex(Vertex{ 'E',false });
+	g.InsertVertex({ 'F', false });
+
+	g.InsertEdge(0,2);
+	g.InsertEdge(2,1);
+	g.InsertEdge(2,3);
+	g.InsertEdge(2,4);
+	g.InsertEdge(1,5);
+	g.InsertEdge(3,4);
+	g.InsertEdge(3,5);
+	g.InsertEdge(5,3);
+
+	g.Path(2, 4);
+
 
 
 

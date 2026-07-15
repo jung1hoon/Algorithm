@@ -100,4 +100,45 @@ public:
             }
         }
     }
+
+private:
+
+    void Path(int current, int end, std::vector<int>& path)
+    {
+        vertices[current].visited = true;
+        path.push_back(current);
+
+        if (current == end)
+        {
+            for (int i = 0; i < path.size(); i++)
+            {
+                std::cout << path[i] << " ";
+            }
+            std::cout << std::endl;
+        }
+        else
+        {
+            for (int i = 0; i < static_cast<int>(vertices.size()); i++)
+            {
+                if (matrix[current][i] == 1 && vertices[i].visited == false)
+                {
+                    Path(i, end, path);
+                }
+            }
+        }
+
+        path.pop_back();
+        vertices[current].visited = false;
+    }
+
+public:
+
+    void Path(int start, int end)
+    {
+        ResetVisited();
+
+        std::vector<int> path;
+        Path(start, end, path);
+    }
+
 };
