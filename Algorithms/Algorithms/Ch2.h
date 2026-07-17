@@ -182,4 +182,50 @@ public:
         }
     }
 
+    void TopologicalSortDFSRecursive(
+        int current, 
+        std::vector<bool>& visited,  
+        std::stack<int>& result)
+    {
+        visited[current] = true;
+
+        for (int next = 0;
+            next < static_cast<int>(vertices.size());
+            next++)
+        {
+            if (matrix[current][next] == 1 &&
+                visited[next] == false)
+            {
+                TopologicalSortDFSRecursive(next, visited, result);
+            }
+        }
+
+        result.push(current);
+    }
+
+    void TopologicalSort_DFS()
+    {
+        std::vector<bool> visited(vertices.size(), false);
+        std::stack<int> result;
+
+        for (int i = 0;
+            i < static_cast<int>(vertices.size());
+            i++)
+        {
+            if (visited[i] == false)
+            {
+                TopologicalSortDFSRecursive(i, visited, result);
+            }
+        }
+
+        while (!result.empty())
+        {
+            int current = result.top();
+            result.pop();
+
+            std::cout << current << ' ';
+        }
+    }
+
+
 };
