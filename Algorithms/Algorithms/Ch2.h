@@ -227,5 +227,58 @@ public:
         }
     }
 
+    void ShortestPathBFS(int start, int destination)
+    {
+        std::queue<int> q;
+        std::vector<bool> visited(vertices.size(), false);
+        std::vector<int> parent(vertices.size(), -1);
+
+        visited[start] = true;
+        q.push(start);
+
+        while (!q.empty())
+        {
+            int current = q.front();
+            q.pop();
+
+            if (current == destination)
+            {
+                break;
+            }
+
+            for (int next = 0;
+                next < static_cast<int>(vertices.size());
+                next++)
+            {
+                if (matrix[current][next] == 1 &&
+                    !visited[next])
+                {
+                    visited[next] = true;
+                    parent[next] = current;
+                    q.push(next);
+                }
+            }
+        }
+
+        if (!visited[destination])
+        {
+            std::cout << "No Path found\n";
+            return;
+        }
+
+        std::vector<int> path;
+
+        for (int current = destination;
+            current != -1;
+            current = parent[current])
+        {
+            path.push_back(current);
+        }
+
+        for (auto it = path.rbegin(); it != path.rend(); ++it)
+        {
+            std::cout << *it << ' ';
+        }
+    }
 
 };

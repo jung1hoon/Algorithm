@@ -25,7 +25,7 @@ int main()
 	g.InsertEdge(2,1);
 	g.InsertEdge(3,1);
 
-	g.TopologicalSort_DFS();
+	g.ShortestPathBFS(5,1);
 
 
 
