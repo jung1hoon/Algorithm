@@ -19,6 +19,7 @@ public:
     struct Vertex
     {
         T item = T();
+        int indegree = 0;
         bool visited = false;
     };
 
@@ -45,8 +46,11 @@ public:
 
     void InsertEdge(int from, int to)
     {
-        matrix[from][to] = 1;
-        //matrix[to][from] = 1; // 무방향 그래프
+        if (matrix[from][to] == 0)
+        {
+            matrix[from][to] = 1;
+            vertices[to].indegree++;
+        }
     }
 
     bool HasEdge(int from, int to) const
@@ -139,6 +143,43 @@ public:
 
         std::vector<int> path;
         Path(start, end, path);
+    }
+
+    void TopologicalSort_q()
+    {
+        std::queue<int> q;
+        std::vector<Vertex> temp = vertices;
+
+        for (int i = 0; i < static_cast<int>(temp.size()); i++)
+        {
+            if (temp[i].indegree == 0 && temp[i].visited == false)
+            {
+                q.push(i);
+                temp[i].visited = true;
+            }
+        }
+
+        while (!q.empty())
+        {
+            int cur = q.front();
+            q.pop();
+
+            std::cout << cur << " ";
+
+            for (int j = 0; j < static_cast<int>(temp.size()); j++)
+            {
+                if (matrix[cur][j] == 1)
+                {
+                    temp[j].indegree--;
+
+                    if (temp[j].indegree == 0 && temp[j].visited == false)
+                    {
+                        q.push(j);
+                        temp[j].visited = true;
+                    }
+                }
+            }
+        }
     }
 
 };

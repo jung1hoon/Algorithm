@@ -16,17 +16,16 @@ int main()
 	g.InsertVertex(Vertex{ 'E',false });
 	g.InsertVertex({ 'F', false });
 
+	g.InsertEdge(4,0);
+	g.InsertEdge(4,1);
 	g.InsertEdge(0,2);
-	g.InsertEdge(2,1);
+	g.InsertEdge(5,0);
+	g.InsertEdge(5,2);
 	g.InsertEdge(2,3);
-	g.InsertEdge(2,4);
-	g.InsertEdge(1,5);
-	g.InsertEdge(3,4);
-	g.InsertEdge(3,5);
-	g.InsertEdge(5,3);
+	g.InsertEdge(2,1);
+	g.InsertEdge(3,1);
 
-	g.Path(2, 4);
-
+	g.TopologicalSort_q();
 
 
 
