@@ -69,7 +69,7 @@ public:
     void DFS(int start_index)
     {   
         vertices[start_index].visited = true;
-        std::cout << vertices[start_index].item << " ";
+        std::cout << start_index << " ";
 
         for (int i = 0; i < vertices.size(); i++)
         {
@@ -329,6 +329,22 @@ public:
         std::cout << std::endl;
 
         std::cout << result << std::endl;
+    }
+
+    void ConnectedComponents()
+    {
+        int j = 1;
+
+        for (int i = 0; i < static_cast<int>(vertices.size()); i++)
+        {
+            if (vertices[i].visited == false)
+            {
+                std::cout << "component " << j << " : ";
+                DFS(i);
+                std::cout << std::endl;
+                j++;
+            }
+        }
     }
 
 };
