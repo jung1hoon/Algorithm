@@ -107,7 +107,7 @@ public:
 
 private:
 
-    void Path(int current, int end, std::vector<int>& path)
+    void AllPath(int current, int end, std::vector<int>& path)
     {
         vertices[current].visited = true;
         path.push_back(current);
@@ -126,7 +126,7 @@ private:
             {
                 if (matrix[current][i] == 1 && vertices[i].visited == false)
                 {
-                    Path(i, end, path);
+                    AllPath(i, end, path);
                 }
             }
         }
@@ -137,12 +137,12 @@ private:
 
 public:
 
-    void Path(int start, int end)
+    void AllPath(int start, int end)
     {
         ResetVisited();
 
         std::vector<int> path;
-        Path(start, end, path);
+        AllPath(start, end, path);
     }
 
     void TopologicalSort_q()
@@ -279,6 +279,56 @@ public:
         {
             std::cout << *it << ' ';
         }
+    }
+
+    bool CycleDFS(int start_index, std::vector<int>& state, std::vector<int>& path)
+    {
+        state[start_index] = 1;
+        path.push_back(start_index);
+
+        for (int i = 0; i < static_cast<int>(vertices.size()); i++)
+        {
+            if (matrix[start_index][i] == 1 && state[i] == 0)
+            {
+                if (CycleDFS(i, state, path))
+                {
+                    return true;
+                }
+                else
+                {
+                    continue;
+                }
+
+            }
+
+            if (matrix[start_index][i] == 1 && state[i] == 1)
+            {
+                path.push_back(i);
+                return true;
+            }
+        }
+
+        path.pop_back();
+        state[start_index] = 2;
+        return false;
+    }
+
+
+    void DetectCycle(int start)
+    {
+        std::vector<int> state(static_cast<int>(vertices.size()), 0);
+        std::vector<int> path;
+        
+        bool result = CycleDFS(start, state, path);
+
+        std::cout << "Path : ";
+        for (int i = 0; i < static_cast<int>(path.size()); i++)
+        {
+            std::cout << path[i] << " ";
+        }
+        std::cout << std::endl;
+
+        std::cout << result << std::endl;
     }
 
 };
