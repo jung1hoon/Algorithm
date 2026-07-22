@@ -5,24 +5,64 @@ using namespace std;
 
 int main()
 {
+	
 	using Vertex = Graph<char>::Vertex;
 
-	Graph<char> g(6);
+	Graph<char> g(13);
 
-	g.InsertVertex(Vertex{ 'A',false });
-	g.InsertVertex({ 'B', false });
-	g.InsertVertex(Vertex{ 'C',false });
-	g.InsertVertex({ 'D', false });
-	g.InsertVertex(Vertex{ 'E',false });
-	g.InsertVertex({ 'F', false });
+	// 정점 0 ~ 12
+	for (int i = 0; i < 13; i++)
+	{
+		g.InsertVertex(Vertex{ static_cast<char>('A' + i), 0, false });
+	}
 
-	g.InsertEdge(0, 2); g.InsertEdge(2, 0);
-	g.InsertEdge(0, 1); g.InsertEdge(1, 0);
-	g.InsertEdge(3, 4); g.InsertEdge(4, 3);
-	g.InsertEdge(4, 5); g.InsertEdge(5, 4);
+	// 0번 정점
+	g.InsertEdge(0, 1);
+	g.InsertEdge(0, 5);
 
-	g.ConnectedComponents();
+	// 2번 정점
+	g.InsertEdge(2, 0);
+	g.InsertEdge(2, 3);
 
+	// 3번 정점
+	g.InsertEdge(3, 2);
+	g.InsertEdge(3, 5);
+
+	// 4번 정점
+	g.InsertEdge(4, 2);
+	g.InsertEdge(4, 3);
+
+	// 5번 정점
+	g.InsertEdge(5, 4);
+
+	// 6번 정점
+	g.InsertEdge(6, 0);
+	g.InsertEdge(6, 4);
+	g.InsertEdge(6, 8);
+	g.InsertEdge(6, 9);
+
+	// 7번 정점
+	g.InsertEdge(7, 6);
+	g.InsertEdge(7, 9);
+
+	// 8번 정점
+	g.InsertEdge(8, 6);
+
+	// 9번 정점
+	g.InsertEdge(9, 10);
+	g.InsertEdge(9, 11);
+
+	// 10번 정점
+	g.InsertEdge(10, 12);
+
+	// 11번 정점
+	g.InsertEdge(11, 4);
+	g.InsertEdge(11, 12);
+
+	// 12번 정점
+	g.InsertEdge(12, 9);
+
+	g.BruteForceStrongComponents();
 
 	return 0;
 }

@@ -347,4 +347,112 @@ public:
         }
     }
 
+
+    bool CanReach(int start, int target)
+    {
+        vertices[start].visited = true;
+
+        if (start == target)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < static_cast<int>(vertices.size()); i++)
+        {
+            if (matrix[start][i] == 1 && vertices[i].visited == false)
+            {
+                if (CanReach(i, target))
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    bool IsStronglyConnected(int vertex1, int vertex2)
+    {
+        ResetVisited();
+        bool vertex1ToVertex2 = CanReach(vertex1, vertex2);
+
+        ResetVisited();
+        bool vertex2ToVertex1 = CanReach(vertex2, vertex1);
+
+        return vertex1ToVertex2 && vertex2ToVertex1;
+    }
+
+    std::vector<std::vector<int>> StrongComponents()
+    {
+        int vertex_count = static_cast<int>(vertices.size());
+
+        std::vector<bool> assigned(vertex_count, false);
+        std::vector<std::vector<int>> components;
+
+        for (int i = 0; i < vertex_count; i++)
+        {
+            if (assigned[i])
+            {
+                continue;
+            }
+
+            std::vector<int> component;
+
+            for (int j = 0; j < vertex_count; j++)
+            {
+                if (assigned[j])
+                {
+                    continue;
+                }
+
+                if (IsStronglyConnected(i, j))
+                {
+                    component.push_back(j);
+                    assigned[j] = true;
+                }
+            }
+
+            components.push_back(component);
+        }
+
+        return components;
+    }
+
+    void BruteForceStrongComponents()
+    {
+        std::vector<std::vector<int>> components = StrongComponents();
+        int j = 1;
+
+        for (int i = 0; i < static_cast<int>(components.size()); i++)
+        {
+            std::cout << "Components " << j << " : { ";
+
+            for (const auto& e : components[i])
+            {
+                std::cout << e << " ";
+            }
+
+            std::cout << "}" << std::endl;
+            j++;
+        }
+    }
+
+    std::vector<std::vector<int>> TransposeMatrix()
+    {
+        int vertex_count = int(vertices.size());
+        std::vector<std::vector<int>> TM(vertex_count,
+            std::vector<int>(vertex_count, 0));
+
+        for (int i = 0; i < vertex_count; i++)
+        {
+            for (int j = 0; j < vertex_count; j++)
+            {
+                TM[j][i] = matrix[i][j];
+            }
+        }
+
+        return TM;
+    }
+
+
 };
