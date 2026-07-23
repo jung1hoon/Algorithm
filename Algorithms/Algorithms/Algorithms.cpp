@@ -63,6 +63,8 @@ int main()
 	g.InsertEdge(12, 9);
 
 	g.BruteForceStrongComponents();
+	std::cout << std::endl;
+	g.Kosaraju();
 
 	return 0;
 }

@@ -454,5 +454,86 @@ public:
         return TM;
     }
 
+    void FinishOrderDFS(int current, std::vector<int>& order)
+    {
+        int vertex_count = static_cast<int>(vertices.size());
+        vertices[current].visited = true;
 
+        for (int i = 0; i < vertex_count; i++)
+        {
+            if (matrix[current][i] == 1 && vertices[i].visited == false)
+            {
+                FinishOrderDFS(i, order);
+            }
+        }
+
+        order.push_back(current);
+    }
+
+    void TransposeDFS(int current, std::vector<int>& component,
+        const std::vector<std::vector<int>>& TM)
+    {
+        vertices[current].visited = true;
+        
+        component.push_back(current);
+
+        for (int j = 0; j < static_cast<int>(vertices.size()); j++)
+        {
+            if (TM[current][j] == 1 &&
+                vertices[j].visited == false)
+            {
+                TransposeDFS(j, component, TM);
+            }
+        }
+    }
+
+
+    void Kosaraju()
+    {
+        std::vector<int> order;
+        std::vector<std::vector<int>> components;
+        int vertex_count = static_cast<int>(vertices.size());
+
+        ResetVisited();
+
+        for (int i = 0; i < vertex_count; i++)
+        {
+            if (vertices[i].visited == false)
+            {
+                FinishOrderDFS(i, order);
+            }
+        }
+
+        std::vector<std::vector<int>> tm = TransposeMatrix();
+        int order_count = static_cast<int>(order.size());
+
+        ResetVisited();
+
+        for (int i = order_count - 1; i >= 0; i--)
+        {
+            int vertex_index = order[i];
+            std::vector<int> component;
+            
+            if (vertices[vertex_index].visited == false)
+            {
+                TransposeDFS(vertex_index, component, tm);
+                components.push_back(component);
+            }
+        }
+
+        int j = 1;
+
+        for (int i = 0; i < static_cast<int>(components.size()); i++)
+        {
+            std::cout << "Components " << j << " : { ";
+
+            for (const auto& e : components[i])
+            {
+                std::cout << e << " ";
+            }
+
+            std::cout << "}" << std::endl;
+            j++;
+        }
+    }
 };
