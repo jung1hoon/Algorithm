@@ -8,6 +8,8 @@
 #include <utility>
 #include <map>
 #include <unordered_map>
+#include <functional>
+#include <limits>
 
 void RomanToInt(std::string str);
 
@@ -537,3 +539,15 @@ public:
         }
     }
 };
+
+struct Edge
+{
+    int to;
+    int weight;
+};
+
+std::vector<int> Dijkstra(
+    const std::vector<std::vector<Edge>>& graph,
+    int start);
+
+void Print_Dijkstra(const std::vector<std::vector<Edge>>& graph, int start);
