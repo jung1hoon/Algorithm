@@ -1,20 +1,14 @@
 #include "Ch1.h"
 #include "Ch2.h"
+#include "Ch3.h"
 
 using namespace std;
 
 int main()
 {
-	std::vector<std::vector<Edge>> graph(5);
+	cout << TopDownFibo(7) << endl;
+	cout << BottomUpFibo(7) << endl;
 
-	graph[0].push_back({ 1, 4 });
-	graph[0].push_back({ 2, 2 });
-	graph[2].push_back({ 1, 1 });
-	graph[1].push_back({ 3, 5 });
-	graph[2].push_back({ 3, 8 });
-	graph[3].push_back({ 4, 2 });
-
-	Print_Dijkstra(graph, 0);
 
 	return 0;
 }
@@ -132,3 +126,18 @@ int main()
 //g.BruteForceStrongComponents();
 //std::cout << std::endl;
 //g.Kosaraju();
+
+
+//---------------------------------------------------------------
+
+
+//std::vector<std::vector<Edge>> graph(5);
+//
+//graph[0].push_back({ 1, 4 });
+//graph[0].push_back({ 2, 2 });
+//graph[2].push_back({ 1, 1 });
+//graph[1].push_back({ 3, 5 });
+//graph[2].push_back({ 3, 8 });
+//graph[3].push_back({ 4, 2 });
+//
+//Print_Dijkstra(graph, 0);
