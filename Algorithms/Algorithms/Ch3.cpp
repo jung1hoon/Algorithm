@@ -44,3 +44,29 @@ int TopDownFibo(int n)
 
 	return TopDownFibo_(n, memo);
 }
+
+//vector<int> price_table = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+
+int Cut_MaxPrice(int length)
+{
+	// length == 0~10
+	std::vector<int> price_table = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+	std::vector<int> memo(length + 1);
+
+	memo[0] = 0;
+
+	for (int cur_length = 1; cur_length <= length; cur_length++)
+	{
+		int max_price = 0;
+
+		for (int i = 1; i <= cur_length; i++)
+		{
+			int temp = price_table[i] + memo[cur_length - i];
+			max_price = max_price > temp ? max_price : temp;
+		}
+
+		memo[cur_length] = max_price;
+	}
+
+	return memo[length];
+}

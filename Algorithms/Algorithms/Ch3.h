@@ -15,3 +15,5 @@ int BottomUpFibo(int n);
 int TopDownFibo_(int n, std::vector<int>& memo);
 int TopDownFibo(int n);
 
+int Cut_MaxPrice(int length);
+

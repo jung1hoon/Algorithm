@@ -6,9 +6,13 @@ using namespace std;
 
 int main()
 {
-	cout << TopDownFibo(7) << endl;
-	cout << BottomUpFibo(7) << endl;
+	//	std::vector<int> price_table = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
 
+	for (int i = 0; i <= 10; i++)
+	{
+		cout << "Optimal_Price" << "[" << i << "] : " << Cut_MaxPrice(i) << endl;
+	}
+	
 
 	return 0;
 }
