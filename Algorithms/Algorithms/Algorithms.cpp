@@ -6,13 +6,18 @@ using namespace std;
 
 int main()
 {
-	//	std::vector<int> price_table = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+	std::vector<Edge_> edges = {
+		{0,1,1},
+		{1,2,5},
+		{1,3,4},
+		{2,3,-3},
+		{3,4,1}
+		//{4,3,-100}
+	};
 
-	for (int i = 0; i <= 10; i++)
-	{
-		cout << "Optimal_Price" << "[" << i << "] : " << Cut_MaxPrice(i) << endl;
-	}
-	
+	int vertex_count = 5;
+
+	Print_BF(edges, 0, vertex_count);
 
 	return 0;
 }
@@ -145,3 +150,13 @@ int main()
 //graph[3].push_back({ 4, 2 });
 //
 //Print_Dijkstra(graph, 0);
+
+//--------------------------------------------------------
+// 
+// 
+////	std::vector<int> price_table = { 0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
+//
+//for (int i = 0; i <= 10; i++)
+//{
+//	cout << "Optimal_Price" << "[" << i << "] : " << Cut_MaxPrice(i) << endl;
+//}

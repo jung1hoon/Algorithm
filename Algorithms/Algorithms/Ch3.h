@@ -17,3 +17,15 @@ int TopDownFibo(int n);
 
 int Cut_MaxPrice(int length);
 
+struct Edge_
+{
+    int from;
+    int to;
+    int weight;
+};
+
+std::vector<int> BellmanFord(const std::vector<Edge_>& edges,
+    int start, int vertex_count);
+
+void Print_BF(const std::vector<Edge_>& edges,
+    int start, int vertex_count);

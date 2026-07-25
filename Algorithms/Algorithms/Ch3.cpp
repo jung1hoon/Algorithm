@@ -70,3 +70,63 @@ int Cut_MaxPrice(int length)
 
 	return memo[length];
 }
+
+std::vector<int> BellmanFord(const std::vector<Edge_>& edges, 
+	int start, int vertex_count)
+{
+	const int INF = std::numeric_limits<int>::max() / 2;
+	std::vector<int> distance(vertex_count, INF);
+
+	distance[start] = 0;
+
+	int edge_count = static_cast<int>(edges.size());
+
+	for (int i = 0; i < vertex_count - 1; i++)
+	{
+		for (int j = 0; j < edge_count; j++)
+		{
+			if (distance[edges[j].from] == INF)
+			{
+				continue;
+			}
+
+			int new_distance = distance[edges[j].from] + edges[j].weight;
+
+			if (new_distance < distance[edges[j].to])
+			{
+				distance[edges[j].to] = new_distance;
+			}
+		}
+	}
+	return distance;
+}
+
+void Print_BF(const std::vector<Edge_>& edges,
+	int start, int vertex_count)
+{
+	std::vector<int> distance = BellmanFord(edges, start, vertex_count);
+	int edge_count = static_cast<int>(edges.size());
+	const int INF = std::numeric_limits<int>::max() / 2;
+
+	for (int j = 0; j < edge_count; j++)
+	{
+		if (distance[edges[j].from] == INF)
+		{
+			continue;
+		}
+
+		int new_distance = distance[edges[j].from] + edges[j].weight;
+
+		if (new_distance < distance[edges[j].to])
+		{
+			std::cout << "Negative Cycle" << std::endl;
+			return;
+		}
+	}
+
+
+	for (int i = 0; i < distance.size(); i++)
+	{
+		std::cout  << i  << " : " << distance[i] << std::endl;
+	}
+}
