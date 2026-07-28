@@ -6,18 +6,25 @@ using namespace std;
 
 int main()
 {
-	std::vector<Edge_> edges = {
-		{0,1,1},
-		{1,2,5},
-		{1,3,4},
-		{2,3,-3},
-		{3,4,1}
-		//{4,3,-100}
-	};
+    int vertex_count = 5;
 
-	int vertex_count = 5;
+    std::vector<Edge_> edges =
+    {
+        {0, 1, 4},
+        {0, 2, 10},
+        {0, 4, 20},
 
-	Print_BF(edges, 0, vertex_count);
+        {1, 2, 3},
+        {1, 3, 8},
+
+        {2, 3, 2},
+
+        {3, 4, 1},
+
+        {4, 1, 2}
+    };
+
+    Print_FloydWarshall(edges, vertex_count);
 
 	return 0;
 }

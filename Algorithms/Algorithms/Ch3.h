@@ -29,3 +29,7 @@ std::vector<int> BellmanFord(const std::vector<Edge_>& edges,
 
 void Print_BF(const std::vector<Edge_>& edges,
     int start, int vertex_count);
+
+void PrintMatrix(std::vector<std::vector<int>>& matrix);
+void FloydWarshall(std::vector<std::vector<int>>& distance, int vertex_count);
+void Print_FloydWarshall(std::vector<Edge_>& edges, int vertex_count);
