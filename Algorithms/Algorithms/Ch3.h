@@ -33,3 +33,5 @@ void Print_BF(const std::vector<Edge_>& edges,
 void PrintMatrix(std::vector<std::vector<int>>& matrix);
 void FloydWarshall(std::vector<std::vector<int>>& distance, int vertex_count);
 void Print_FloydWarshall(std::vector<Edge_>& edges, int vertex_count);
+
+std::string LCS(const std::string& str1, const std::string& str2);

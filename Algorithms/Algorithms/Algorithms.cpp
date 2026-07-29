@@ -6,25 +6,11 @@ using namespace std;
 
 int main()
 {
-    int vertex_count = 5;
 
-    std::vector<Edge_> edges =
-    {
-        {0, 1, 4},
-        {0, 2, 10},
-        {0, 4, 20},
+	string X = "ABCBDAB";
+	string Y = "BDCAB";
 
-        {1, 2, 3},
-        {1, 3, 8},
-
-        {2, 3, 2},
-
-        {3, 4, 1},
-
-        {4, 1, 2}
-    };
-
-    Print_FloydWarshall(edges, vertex_count);
+	cout << LCS(X, Y) << endl;
 
 	return 0;
 }
@@ -167,3 +153,27 @@ int main()
 //{
 //	cout << "Optimal_Price" << "[" << i << "] : " << Cut_MaxPrice(i) << endl;
 //}
+
+
+//----------------------------------------------------
+
+
+//int vertex_count = 5;
+//
+//std::vector<Edge_> edges =
+//{
+//    {0, 1, 4},
+//    {0, 2, 10},
+//    {0, 4, 20},
+//
+//    {1, 2, 3},
+//    {1, 3, 8},
+//
+//    {2, 3, 2},
+//
+//    {3, 4, 1},
+//
+//    {4, 1, 2}
+//};
+//
+//Print_FloydWarshall(edges, vertex_count);

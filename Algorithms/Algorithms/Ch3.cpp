@@ -203,3 +203,30 @@ void Print_FloydWarshall(std::vector<Edge_>& edges, int vertex_count)
 	FloydWarshall(distance, vertex_count);
 	PrintMatrix(distance);
 }
+
+
+std::string LCS(const std::string& str1, const std::string& str2)
+{
+	int n1 = str1.length();
+	int n2 = str2.length();
+
+	if (n1 == 0 || n2 == 0)
+	{
+		return "";
+	}
+
+	if (str1[n1 - 1] == str2[n2 - 1])
+	{
+		std::string r = LCS(str1.substr(0, n1 - 1), str2.substr(0, n2 - 1));
+		r.append(1, str1[n1 - 1]);
+		return r;
+	}
+	else
+	{
+		std::string r1 = LCS(str1, str2.substr(0, n2 - 1));
+		std::string r2 = LCS(str1.substr(0, n1 - 1), str2);
+
+		std::string result = r1.length() > r2.length() ? r1 : r2;
+		return result;
+	}
+}
