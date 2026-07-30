@@ -35,3 +35,12 @@ void FloydWarshall(std::vector<std::vector<int>>& distance, int vertex_count);
 void Print_FloydWarshall(std::vector<Edge_>& edges, int vertex_count);
 
 std::string LCS(const std::string& str1, const std::string& str2);
+
+
+
+int UnboundedBag(const std::vector<int>& value, const std::vector<int>& weight,
+    int cur_weight, std::vector<int>& memo);
+
+
+int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
+    int cur_weight, std::vector<int>& memo, std::vector<bool>& used);

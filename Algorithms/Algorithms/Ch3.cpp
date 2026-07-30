@@ -230,3 +230,80 @@ std::string LCS(const std::string& str1, const std::string& str2)
 		return result;
 	}
 }
+
+
+int UnboundedBag(const std::vector<int>& value, const std::vector<int>& weight,
+	int cur_weight, std::vector<int>& memo)
+{
+	if (cur_weight <= 0)
+	{
+		return 0;
+	}
+
+	if (memo[cur_weight] != -1)
+	{
+		return memo[cur_weight];
+	}
+
+	memo[cur_weight] = 0;
+
+	for (int i = 0; i < int(value.size()); i++)
+	{	
+		if (weight[i] <= 0)
+		{
+			continue;
+		}
+
+		if (cur_weight - weight[i] < 0)
+		{
+			continue;
+		}
+
+		int temp = value[i] + UnboundedBag(value, weight, cur_weight - weight[i], memo);
+		memo[cur_weight] = memo[cur_weight] > temp ? memo[cur_weight] : temp;
+	}
+	return memo[cur_weight];
+}
+
+int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
+	int cur_weight, std::vector<int>& memo, std::vector<bool>& used)
+{
+	if (cur_weight <= 0)
+	{
+		return 0;
+	}
+
+	if (memo[cur_weight] != -1)
+	{
+		return memo[cur_weight];
+	}
+
+	memo[cur_weight] = 0;
+
+	for (int i = 0; i < int(value.size()); i++)
+	{
+		if (used[i] == true)
+		{
+			continue;
+		}
+
+		if (weight[i] <= 0)
+		{
+			continue;
+		}
+
+		if (cur_weight - weight[i] < 0)
+		{
+			continue;
+		}
+
+		used[i] = true;
+
+		int temp = value[i] + ZeroOneBag(value, weight, cur_weight - weight[i], memo, used);
+		memo[cur_weight] = memo[cur_weight] > temp ? memo[cur_weight] : temp;
+
+		used[i] = false;
+	}
+	return memo[cur_weight];
+}
+

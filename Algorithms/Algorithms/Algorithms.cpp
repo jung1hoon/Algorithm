@@ -6,11 +6,14 @@ using namespace std;
 
 int main()
 {
+	vector<int> values = { 6, 5, 3 }; // 아이템의 가치
+	vector<int> weights = { 3, 2, 1 }; // 아이템의 무게
+	int W = 5; // 가방 용량
 
-	string X = "ABCBDAB";
-	string Y = "BDCAB";
+	std::vector<int> memo(W + 1, -1);
+	std::vector<bool> used(int(values.size()), false);
 
-	cout << LCS(X, Y) << endl;
+	cout << ZeroOneBag(values, weights, W, memo, used) << endl;
 
 	return 0;
 }
