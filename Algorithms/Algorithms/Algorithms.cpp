@@ -6,14 +6,19 @@ using namespace std;
 
 int main()
 {
-	vector<int> values = { 6, 5, 3 }; // 아이템의 가치
-	vector<int> weights = { 3, 2, 1 }; // 아이템의 무게
-	int W = 5; // 가방 용량
+	//vector<int> values = { 6, 5, 3 }; // 아이템의 가치
+	//vector<int> weights = { 3, 2, 1 }; // 아이템의 무게
+	//int W = 5; // 가방 용량
+
+	int W = 10; // 42
+	vector<int> weights = { 6, 2,  4,  3, 11 };
+	vector<int> values = { 20, 8, 14, 13, 35 };
 
 	std::vector<int> memo(W + 1, -1);
 	std::vector<bool> used(int(values.size()), false);
 
-	cout << ZeroOneBag(values, weights, W, memo, used) << endl;
+	cout << UnboundedBag(values, weights, W, memo) << endl;
+	cout << UnboundedBag2(values, weights, W) << endl;
 
 	return 0;
 }

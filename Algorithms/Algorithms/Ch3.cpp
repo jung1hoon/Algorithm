@@ -265,6 +265,43 @@ int UnboundedBag(const std::vector<int>& value, const std::vector<int>& weight,
 	return memo[cur_weight];
 }
 
+int UnboundedBag2(const std::vector<int>& value, const std::vector<int>& weight,
+	int cur_weight)
+{
+	if (cur_weight <= 0)
+	{
+		return 0;
+	}
+
+	std::vector<int> memo(cur_weight + 1, 0);
+
+	for (int i = 1; i <= cur_weight; i++)
+	{
+		int max_value = 0;
+
+		for (int j = 0; j < int(value.size()); j++)
+		{
+			if (weight[j] <= 0)
+			{
+				continue;
+			}
+
+			if (i - weight[j] < 0)
+			{
+				continue;
+			}
+
+			int temp = value[j] + memo[i - weight[j]];
+			max_value = max_value > temp ? max_value : temp;
+		}
+
+		memo[i] = max_value;
+	}
+	return memo[cur_weight];
+}
+
+
+// 고쳐야함.
 int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
 	int cur_weight, std::vector<int>& memo, std::vector<bool>& used)
 {

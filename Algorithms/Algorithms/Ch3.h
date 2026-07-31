@@ -40,7 +40,8 @@ std::string LCS(const std::string& str1, const std::string& str2);
 
 int UnboundedBag(const std::vector<int>& value, const std::vector<int>& weight,
     int cur_weight, std::vector<int>& memo);
-
+int UnboundedBag2(const std::vector<int>& value, const std::vector<int>& weight,
+    int cur_weight);
 
 int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
     int cur_weight, std::vector<int>& memo, std::vector<bool>& used);
