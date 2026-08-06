@@ -301,46 +301,65 @@ int UnboundedBag2(const std::vector<int>& value, const std::vector<int>& weight,
 }
 
 
-// 고쳐야함.
 int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
-	int cur_weight, std::vector<int>& memo, std::vector<bool>& used)
+	int cur_item ,int cur_weight, std::vector<std::vector<int>>& memo)
 {
-	if (cur_weight <= 0)
+	if (cur_weight <= 0 || cur_item <= 0)
 	{
 		return 0;
 	}
 
-	if (memo[cur_weight] != -1)
+	if (memo[cur_item][cur_weight] != -1)
 	{
-		return memo[cur_weight];
+		return memo[cur_item][cur_weight];
 	}
 
-	memo[cur_weight] = 0;
+	memo[cur_item][cur_weight] = 0;
 
-	for (int i = 0; i < int(value.size()); i++)
+	if (cur_weight - weight[cur_item - 1] < 0)
 	{
-		if (used[i] == true)
-		{
-			continue;
-		}
-
-		if (weight[i] <= 0)
-		{
-			continue;
-		}
-
-		if (cur_weight - weight[i] < 0)
-		{
-			continue;
-		}
-
-		used[i] = true;
-
-		int temp = value[i] + ZeroOneBag(value, weight, cur_weight - weight[i], memo, used);
-		memo[cur_weight] = memo[cur_weight] > temp ? memo[cur_weight] : temp;
-
-		used[i] = false;
+		memo[cur_item][cur_weight] = ZeroOneBag(value, weight, cur_item - 1, cur_weight, memo);
+		return memo[cur_item][cur_weight];
 	}
-	return memo[cur_weight];
+
+	int temp1 = value[cur_item - 1] + ZeroOneBag(value, weight, cur_item - 1, 
+		cur_weight - weight[cur_item - 1], memo);
+
+	int temp2 = ZeroOneBag(value, weight, cur_item - 1, cur_weight, memo);
+
+	int max_value = temp1 > temp2 ? temp1 : temp2;
+	memo[cur_item][cur_weight] = max_value;
+
+	return memo[cur_item][cur_weight];
+}
+
+
+int ZeroOneBag2(const std::vector<int>& value, const std::vector<int>& weight,
+	int cur_weight)
+{
+	int item_count = static_cast<int>(value.size());
+	std::vector<std::vector<int>> memo(item_count + 1, std::vector<int>(cur_weight + 1, 0));
+
+	for (int i = 1; i <= item_count; i++)//int w = 0; w <= cur_weight; w++
+	{
+		for (int w = 0; w <= cur_weight; w++)//int i = 1; i <= item_count; i++
+		{
+			int m = 0;
+
+			if (w - weight[i - 1] < 0)
+			{
+				memo[i][w] = memo[i - 1][w];
+				continue;
+			}
+
+			int temp1 = value[i - 1] + memo[i - 1][w - weight[i - 1]];
+			int temp2 = memo[i - 1][w];
+			m = temp1 > temp2 ? temp1 : temp2;
+
+			memo[i][w] = m;
+		}
+	}
+
+	return memo[item_count][cur_weight];
 }
 

@@ -44,4 +44,6 @@ int UnboundedBag2(const std::vector<int>& value, const std::vector<int>& weight,
     int cur_weight);
 
 int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
-    int cur_weight, std::vector<int>& memo, std::vector<bool>& used);
+    int cur_item, int cur_weight, std::vector<std::vector<int>>& memo);
+int ZeroOneBag2(const std::vector<int>& value, const std::vector<int>& weight,
+    int cur_weight);
