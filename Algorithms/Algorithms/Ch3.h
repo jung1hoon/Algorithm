@@ -47,3 +47,10 @@ int ZeroOneBag(const std::vector<int>& value, const std::vector<int>& weight,
     int cur_item, int cur_weight, std::vector<std::vector<int>>& memo);
 int ZeroOneBag2(const std::vector<int>& value, const std::vector<int>& weight,
     int cur_weight);
+
+int LIS(const std::vector<int>& v);
+int RecurLIS(const std::vector<int>& v, int end);
+int LIS_Recur(std::vector<int>& v);
+int MemoLIS(const std::vector<int>& v, int end, std::vector<int>& memo);
+int LIS_TopDown(const std::vector<int>& v);
+

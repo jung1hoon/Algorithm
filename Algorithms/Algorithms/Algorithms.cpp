@@ -6,23 +6,17 @@ using namespace std;
 
 int main()
 {
-	vector<int> values = { 6, 5, 3 }; // 아이템의 가치
-	vector<int> weights = { 3, 2, 1 }; // 아이템의 무게
-	int W = 5; // 가방 용량
+	std::vector<int> v = { 10, 20, 10, 30, 20, 50 };
 
-	int item_size = static_cast<int>(values.size());
+	int size = static_cast<int>(v.size());
+	int end = size - 1;
 
-	//int W = 10; // 42
-	//vector<int> weights = { 6, 2,  4,  3, 11 };
-	//vector<int> values = { 20, 8, 14, 13, 35 };
+	std::vector<int> memo(int(v.size()), 0);
 
-	std::vector<std::vector<int>> memo(item_size + 1, std::vector<int>(W + 1, -1));
 
-	cout << ZeroOneBag(values, weights, item_size, W, memo) << endl;
-	cout << ZeroOneBag2(values, weights, W) << endl;
-
-	//cout << UnboundedBag(values, weights, W, memo) << endl;
-	//cout << UnboundedBag2(values, weights, W) << endl;
+	cout << LIS(v) << endl;
+	cout << LIS_Recur(v) << endl;
+	cout << LIS_TopDown(v) << endl;
 
 	return 0;
 }
@@ -189,3 +183,24 @@ int main()
 //};
 //
 //Print_FloydWarshall(edges, vertex_count);
+
+
+//----------------------------------------------------
+
+	//vector<int> values = { 6, 5, 3 }; // 아이템의 가치
+	//vector<int> weights = { 3, 2, 1 }; // 아이템의 무게
+	//int W = 5; // 가방 용량
+
+	//int item_size = static_cast<int>(values.size());
+
+	//int W = 10; // 42
+	//vector<int> weights = { 6, 2,  4,  3, 11 };
+	//vector<int> values = { 20, 8, 14, 13, 35 };
+
+	//std::vector<std::vector<int>> memo(item_size + 1, std::vector<int>(W + 1, -1));
+
+	//cout << ZeroOneBag(values, weights, item_size, W, memo) << endl;
+	//cout << ZeroOneBag2(values, weights, W) << endl;
+
+	//cout << UnboundedBag(values, weights, W, memo) << endl;
+	//cout << UnboundedBag2(values, weights, W) << endl;

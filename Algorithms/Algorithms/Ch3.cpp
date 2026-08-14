@@ -363,3 +363,123 @@ int ZeroOneBag2(const std::vector<int>& value, const std::vector<int>& weight,
 	return memo[item_count][cur_weight];
 }
 
+int LIS(const std::vector<int>& v)
+{
+	int size = static_cast<int>(v.size());
+	std::vector<int> result(size, 1);
+	
+	if (size == 0)
+	{
+		return 0;
+	}
+
+	for (int i = size - 2; i >= 0; i--)
+	{
+		int m = 1;
+
+		for (int j = i + 1; j < size; j++)
+		{
+			if (v[i] < v[j])
+			{
+				int temp = 1 + result[j];
+				m = m > temp ? m : temp;
+			}
+		}
+
+		result[i] = m;
+	}
+
+	int max_value = 1;
+
+	for (int i = 0; i < size; i++)
+	{
+		max_value = max_value > result[i] ? max_value : result[i];
+	}
+
+	return max_value;
+}
+
+
+int RecurLIS(const std::vector<int>& v, int end)
+{
+	if (end == 0)
+	{
+		return 1;
+	}
+
+	int m = 1;
+
+	for (int i = end - 1; i >= 0; i--)
+	{
+		if (v[end] > v[i])
+		{
+			int temp = 1 + RecurLIS(v, i);
+			m = m > temp ? m : temp;
+		}
+	}
+
+	return m;
+}
+
+int LIS_Recur(std::vector<int>& v)
+{
+	int size = static_cast<int>(v.size());
+
+	if (size == 0)
+	{
+		return 0;
+	}
+
+	int max_value = 1;
+
+	for (int i = 0; i < size; i++)
+	{
+		int temp = RecurLIS(v, i);
+		max_value = max_value > temp ? max_value : temp;
+	}
+
+	return max_value;
+}
+
+int MemoLIS(const std::vector<int>& v, int end, std::vector<int>& memo)
+{
+	if (memo[end] != 0)
+	{
+		return memo[end];
+	}
+
+	int m = 1;
+
+	for (int i = end - 1; i >= 0; i--)
+	{
+		if (v[end] > v[i])
+		{
+			int temp = 1 + MemoLIS(v, i, memo);
+			m = m > temp ? m : temp;
+		}
+	}
+
+	memo[end] = m;
+	return memo[end];
+}
+
+int LIS_TopDown(const std::vector<int>& v)
+{
+	int size = static_cast<int>(v.size());
+
+	if (size == 0)
+	{
+		return 0;
+	}
+
+	std::vector<int> memo(size, 0);
+	int max_value = 1;
+
+	for (int i = 0; i < size; i++)
+	{
+		int temp = MemoLIS(v, i, memo);
+		max_value = max_value > temp ? max_value : temp;
+	}
+
+	return max_value;
+}
