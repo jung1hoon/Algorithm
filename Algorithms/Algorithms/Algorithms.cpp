@@ -1,28 +1,47 @@
 #include "Ch1.h"
 #include "Ch2.h"
 #include "Ch3.h"
+#include "Ch4.h"
 
 using namespace std;
 
 int main()
 {
-	vector<Activity> act = 
-	{
-		{1,4}, {3,8},
-		{2,5}, {6,9},
-		{3,6}, {8,10},
-		{5,7}, {9,11},
-		{1,8}, {5,12},
-		{6,13}, {8,14},
-		{13,15}
-	};
+    const int vertex_count = 5;
 
-	vector<Activity> result = GreedyActivitySelection(act);
+    std::vector<std::vector<Edge>> graph(vertex_count);
 
-	for (const auto& r : result)
-	{
-		cout << "(" << r.start << ", " << r.end << ")" << endl;
-	}
+    // 0 - 1 (2)
+    graph[0].push_back({ 1, 2 });
+    graph[1].push_back({ 0, 2 });
+
+    // 0 - 3 (6)
+    graph[0].push_back({ 3, 6 });
+    graph[3].push_back({ 0, 6 });
+
+    // 1 - 2 (3)
+    graph[1].push_back({ 2, 3 });
+    graph[2].push_back({ 1, 3 });
+
+    // 1 - 3 (8)
+    graph[1].push_back({ 3, 8 });
+    graph[3].push_back({ 1, 8 });
+
+    // 1 - 4 (5)
+    graph[1].push_back({ 4, 5 });
+    graph[4].push_back({ 1, 5 });
+
+    // 2 - 4 (7)
+    graph[2].push_back({ 4, 7 });
+    graph[4].push_back({ 2, 7 });
+
+    // 3 - 4 (9)
+    graph[3].push_back({ 4, 9 });
+    graph[4].push_back({ 3, 9 });
+
+    int result = Prim(graph, 0);
+
+    std::cout << "MST total weight: " << result << '\n';
 
 	return 0;
 }
@@ -224,3 +243,25 @@ int main()
 //cout << LIS(v) << endl;
 //cout << LIS_Recur(v) << endl;
 //cout << LIS_TopDown(v) << endl;
+
+
+//------------------------------------------------------
+
+//vector<Activity> act =
+//{
+//	{1,4}, {3,8},
+//	{2,5}, {6,9},
+//	{3,6}, {8,10},
+//	{5,7}, {9,11},
+//	{1,8}, {5,12},
+//	{6,13}, {8,14},
+//	{13,15}
+//};
+//
+//vector<Activity> result = GreedyActivitySelection(act);
+//
+//for (const auto& r : result)
+//{
+//	cout << "(" << r.start << ", " << r.end << ")" << endl;
+//}
+

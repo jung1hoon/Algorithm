@@ -551,3 +551,5 @@ std::vector<int> Dijkstra(
     int start);
 
 void Print_Dijkstra(const std::vector<std::vector<Edge>>& graph, int start);
+
+int Prim(const std::vector<std::vector<Edge>>& graph, int start);

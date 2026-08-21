@@ -92,3 +92,47 @@ void Print_Dijkstra(const std::vector<std::vector<Edge>>& graph, int start)
 		}
 	}
 }
+
+
+int Prim(const std::vector<std::vector<Edge>>& graph, int start)
+{
+	int vertex_count = static_cast<int>(graph.size());
+
+	std::vector<bool> visited(vertex_count, false);
+
+	using Pair = std::pair<int, int>;
+
+	std::priority_queue<
+		Pair,
+		std::vector<Pair>,
+		std::greater<Pair>
+	> pq;
+
+	pq.push({ 0, start });
+
+	int total_weight = 0;
+
+	while (!pq.empty())
+	{
+		auto [weight, current] = pq.top();
+		pq.pop();
+
+		if (visited[current])
+		{
+			continue;
+		}
+
+		visited[current] = true;
+		total_weight += weight;
+
+		for (const Edge& edge : graph[current])
+		{
+			if (!visited[edge.to])
+			{
+				pq.push({ edge.weight, edge.to });
+			}
+		}
+	}
+
+	return total_weight;
+}
