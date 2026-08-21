@@ -6,17 +6,23 @@ using namespace std;
 
 int main()
 {
-	vector<Item> items = 
+	vector<Activity> act = 
 	{
-		{10, 10, 1},
-		{7, 28, 4},
-		{6, 12, 2},
-		{4, 12, 3}
+		{1,4}, {3,8},
+		{2,5}, {6,9},
+		{3,6}, {8,10},
+		{5,7}, {9,11},
+		{1,8}, {5,12},
+		{6,13}, {8,14},
+		{13,15}
 	};
 
-	int W = 6;
+	vector<Activity> result = GreedyActivitySelection(act);
 
-	cout << FractionalKnapsack(items, W) << endl;
+	for (const auto& r : result)
+	{
+		cout << "(" << r.start << ", " << r.end << ")" << endl;
+	}
 
 	return 0;
 }

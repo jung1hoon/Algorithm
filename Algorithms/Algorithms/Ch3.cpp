@@ -516,3 +516,63 @@ int FractionalKnapsack(std::vector<Item> items, int W)
 
 	return result;
 }
+
+int ActivitySelection(std::vector<Activity> act)
+{
+	int size = static_cast<int>(act.size());
+
+	std::vector<int> memo(size, 1);
+
+	std::sort(act.begin(), act.end(), 
+		[](const Activity& n, const Activity& m)
+		{
+			return n.start < m.start;
+		}
+	);
+
+	for (int i = size - 2; i >= 0; i--)
+	{
+		for (int j = i + 1; j < size; j++)
+		{
+			if (act[i].end < act[j].start)
+			{
+				int temp = 1 + memo[j];
+				memo[i] = memo[i] > temp ? memo[i] : temp;
+			}
+		}
+	}
+
+	int max_value = 0;
+
+	for (const auto& a : memo)
+	{
+		max_value = max_value > a ? max_value : a;
+	}
+	
+	return max_value;
+}
+
+std::vector<Activity> GreedyActivitySelection(std::vector<Activity> act)
+{
+	std::sort(act.begin(), act.end(),
+		[](const Activity& n, const Activity& m)
+		{
+			return n.end < m.end;
+		}
+	);
+
+	std::vector<Activity> result;
+	result.push_back(act[0]);
+	int j = 0;
+
+	for (int i = 1; i < int(act.size()); i++)
+	{
+		if (act[i].start > result[j].end)
+		{
+			result.push_back(act[i]);
+			j++;
+		}
+	}
+
+	return result;
+}

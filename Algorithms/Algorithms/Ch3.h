@@ -61,3 +61,12 @@ struct Item
     int weight = 0;
 };
 int FractionalKnapsack(std::vector<Item> items, int W);
+
+struct Activity
+{
+    int start = 0;
+    int end = 0;
+};
+
+int ActivitySelection(const std::vector<Activity> act);
+std::vector<Activity> GreedyActivitySelection(std::vector<Activity> act);
