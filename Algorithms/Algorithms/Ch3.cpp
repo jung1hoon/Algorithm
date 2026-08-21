@@ -483,3 +483,36 @@ int LIS_TopDown(const std::vector<int>& v)
 
 	return max_value;
 }
+
+int FractionalKnapsack(std::vector<Item> items, int W)
+{
+	std::sort(items.begin(), items.end(),
+		[](const Item& a, const Item& b)
+		{
+			return a.pr > b.pr;
+		});
+
+	int result = 0;
+	int w = W;
+
+	for (const auto& i : items)
+	{
+		if (w-i.weight >= 0)
+		{
+			result += i.value;
+			w -= i.weight;
+		}
+		else
+		{
+			result += i.pr * w;
+			w = 0;
+		}
+
+		if (w == 0)
+		{
+			break;
+		}
+	}
+
+	return result;
+}

@@ -6,17 +6,17 @@ using namespace std;
 
 int main()
 {
-	std::vector<int> v = { 10, 20, 10, 30, 20, 50 };
+	vector<Item> items = 
+	{
+		{10, 10, 1},
+		{7, 28, 4},
+		{6, 12, 2},
+		{4, 12, 3}
+	};
 
-	int size = static_cast<int>(v.size());
-	int end = size - 1;
+	int W = 6;
 
-	std::vector<int> memo(int(v.size()), 0);
-
-
-	cout << LIS(v) << endl;
-	cout << LIS_Recur(v) << endl;
-	cout << LIS_TopDown(v) << endl;
+	cout << FractionalKnapsack(items, W) << endl;
 
 	return 0;
 }
@@ -204,3 +204,17 @@ int main()
 
 	//cout << UnboundedBag(values, weights, W, memo) << endl;
 	//cout << UnboundedBag2(values, weights, W) << endl;
+
+
+//------------------------------------------------------
+//std::vector<int> v = { 10, 20, 10, 30, 20, 50 };
+//
+//int size = static_cast<int>(v.size());
+//int end = size - 1;
+//
+//std::vector<int> memo(int(v.size()), 0);
+//
+//
+//cout << LIS(v) << endl;
+//cout << LIS_Recur(v) << endl;
+//cout << LIS_TopDown(v) << endl;

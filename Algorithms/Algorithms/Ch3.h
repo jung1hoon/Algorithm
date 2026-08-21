@@ -54,3 +54,10 @@ int LIS_Recur(std::vector<int>& v);
 int MemoLIS(const std::vector<int>& v, int end, std::vector<int>& memo);
 int LIS_TopDown(const std::vector<int>& v);
 
+struct Item
+{
+    int pr = 0;
+    int value = 0;
+    int weight = 0;
+};
+int FractionalKnapsack(std::vector<Item> items, int W);
